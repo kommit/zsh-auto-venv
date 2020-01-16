@@ -13,3 +13,13 @@ This plugin will find .venv in current directory or nearest parent directories, 
 Add the plugin in your `~/.zshrc` file:
 
     plugins=(... zsh-auto-venv)
+
+# Alias
+    va
+Find and activate virtual env.
+
+    vd
+Deactivate current virtual env.
+
+    vc
+Show current virtual env.
