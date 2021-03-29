@@ -1,7 +1,7 @@
 # Functions
 function venv-activate(){
 	if [ -d "$VIRTUAL_ENV" ] ; then
-		echo "${fg_bold[magenta]}deactive${reset_color}: ${fg_bold[grey]}$VIRTUAL_ENV${reset_color}"
+		echo "${fg_bold[magenta]}deactive${reset_color}: ${fg_bold[yellow]}$VIRTUAL_ENV${reset_color}"
 		deactivate
 	fi
 
@@ -11,7 +11,7 @@ function venv-activate(){
 		CUR_ACTIVATE=$CUR_VENV/bin/activate
 
 		if [ -f "$CUR_ACTIVATE" ] ; then
-			echo "${fg_bold[green]}active${reset_color}: ${fg_bold[grey]}$CUR_VENV${reset_color}"
+			echo "${fg_bold[green]}  active${reset_color}: ${fg_bold[yellow]}$CUR_VENV${reset_color}"
 			source $CUR_ACTIVATE
 			return 0
 		else
@@ -25,16 +25,23 @@ function venv-activate(){
 
 function venv-deactivate(){
 	if [ -d "$VIRTUAL_ENV" ] ; then
-		echo "${fg_bold[magenta]}deactive${reset_color}: ${fg_bold[grey]}$VIRTUAL_ENV${reset_color}"
+		echo "${fg_bold[magenta]}deactive${reset_color}: ${fg_bold[yellow]}$VIRTUAL_ENV${reset_color}"
 		deactivate
 	fi
 }
 
 function venv-current() {
-	echo "${fg_bold[grey]}$VIRTUAL_ENV${reset_color}"
+	echo "${fg_bold[blue]} current${reset_color}: ${fg_bold[yellow]}$VIRTUAL_ENV${reset_color}"
+}
+
+function venv-create() {
+	venv-deactivate
+	python3 -mvenv .venv
+	venv-activate
 }
 
 # Alias
 alias va='venv-activate'
 alias vd='venv-deactivate'
 alias vc='venv-current'
+alias vcr='venv-create'
